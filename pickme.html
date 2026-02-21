@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Плавное появление «пикми»</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .words {
+            font-size: 18px;
+            line-height: 2;
+            word-spacing: 8px;
+        }
+        .word {
+            opacity: 0;
+            display: inline-block;
+            animation: fadeIn 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      
+        <div class="words" id="wordsContainer"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById('wordsContainer');
+        const totalWords = 100;
+        const word = 'Ты пикми!';
+
+        for (let i = 0; i < totalWords; i++) {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = word;
+            span.style.animationDelay = `${i * 0.1}s`;
+            container.appendChild(span);
+
+            // Добавляем пробел после каждого слова, кроме последнего
+            if (i < totalWords - 1) {
+                const space = document.createTextNode(' ');
+                container.appendChild(space);
+            }
+        }
+    </script>
+</body>
+</html>
+
